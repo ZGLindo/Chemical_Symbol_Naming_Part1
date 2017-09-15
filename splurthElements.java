@@ -15,7 +15,7 @@ public class splurthElements {
 
 	public static void main(String [] args) {
 		// Prompt the user to choose an element. Add spaces after for input.
-		System.out.println("Welcome to Splurth, where you can create your own"
+		System.out.println("\n\nWelcome to Splurth, where you can create your own"
 							+ " elements! What would you like your first"
 							+ " element to be?\n");
 		// Show the rules for entering user's element name and symbol
@@ -29,21 +29,26 @@ public class splurthElements {
 
 		// Verify the user knows what was typed. This also helps with testing
 		// the code above.
-		System.out.println("Your Element is: " + element + " " + element.length() + "\n\n"
-							+ "Your Symbol is: " + symbol + " " + symbol.length());
+		System.out.println("\n\nYour Element is: " + element + "\n\n"
+							+ "Your Symbol is: " + symbol + "\n\n");
+
+		System.out.println(element + " " + symbol + " -> " 
+							+ validation(element.toLowerCase(), symbol.toLowerCase())
+							+ "\n");
 	}
 
 	// This method sends back the user input in the form of a string
 	public static String initializer() {
 		Scanner sc = new Scanner(System.in);	// Initialize scanner to read
 												// Terminal input
-		String elandsymb = sc.nextLine();				// Read user input for element
+		String elandsymb = sc.nextLine();		// Read user input for element
 												// name and symbol
 
 		// Keep user in input loop until the user enters a valid input
 		while (elandsymb.length() < 5) {
 			System.out.println("Please be sure to enter an element name "
 								+ "that is longer than 1 character.");
+
 			// Show the rules for entering user's element name and symbol
 			System.out.println("(Please enter your element like this: elementname"
 								+ "  sy (Element is at least 2 letters,"
@@ -76,6 +81,13 @@ public class splurthElements {
 		String symbol = elandsymb.substring(elandsymb.length()-2, elandsymb.length());
 		String [] split = {element, symbol};
 		return split;
+	}
+
+	public static String validation(String e, String s) {
+		for (int i = 0; i < e.length() - 1; i++) 
+			if (e.charAt(i) == s.charAt(0) && e.charAt(i+1) == s.charAt(1))
+				return "valid";
+		return "invalid";
 	}
 
 }
